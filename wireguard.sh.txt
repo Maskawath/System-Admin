@@ -17,16 +17,16 @@ Step 2: Create a configure file in /etc/wireguard
 
 # vim /etc/wireguard/wg0.conf
 [Interface]
-Address = 172.16.180.41/23
-DNS = 9.9.9.11
-PrivateKey = 0LHyDODlNLpKdw/8FRiac3J9C7XhAFKTYt/xnFVyAV0=
+Address = 
+DNS = 
+PrivateKey = 
 
 [Peer]
-PublicKey = qU5ULUtVYlFF5LT2yhy1bhlG4LQQKTUrxHTZli9bOQA=
-PresharedKey = U5L9DaC/UfwxnoGgqt55rQ1ElaF+Ar7bfj1omqNZm7k=
-AllowedIPs = 172.16.180.0/23
-Endpoint = 123.200.10.126:8443
-PersistentKeepalive = 25
+PublicKey = 
+PresharedKey = 
+AllowedIPs = 
+Endpoint = 
+PersistentKeepalive = 
 
 Save and Close The file.
 
@@ -53,14 +53,14 @@ Step 4: Verification
 # wg show wg0
 
 interface: wg0
-  public key: QJktJ8nZhjtFIAQbImF6o2yhfl54V/gFsGOoKrQNyVw=
+  public key: w=
   private key: (hidden)
   listening port: 56505
   fwmark: 0xca6c
 
-peer: qU5ULUtVYlFF5LT2yhy1bhlG4LQQKTUrxHTZli9bOQA=
+peer: 
   preshared key: (hidden)
-  endpoint: 123.200.10.126:8443
+  endpoint: 
   allowed ips: 0.0.0.0/0, ::/0
   latest handshake: 4 seconds ago
   transfer: 16.81 MiB received, 744.82 KiB sent
