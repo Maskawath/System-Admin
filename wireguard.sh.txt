@@ -1,0 +1,78 @@
+Setup Wireguard Client Alma Linux 8
+====================================
+
+
+Step 1: Install EPEL Repository
+===============================
+# yum install -y epel-release elrepo-release
+# yum install kmod-wireguard wireguard-tools
+
+
+----------------< >---------------------
+
+
+Step 2: Create a configure file in /etc/wireguard
+=================================================
+
+
+# vim /etc/wireguard/wg0.conf
+[Interface]
+Address = 172.16.180.41/23
+DNS = 9.9.9.11
+PrivateKey = 0LHyDODlNLpKdw/8FRiac3J9C7XhAFKTYt/xnFVyAV0=
+
+[Peer]
+PublicKey = qU5ULUtVYlFF5LT2yhy1bhlG4LQQKTUrxHTZli9bOQA=
+PresharedKey = U5L9DaC/UfwxnoGgqt55rQ1ElaF+Ar7bfj1omqNZm7k=
+AllowedIPs = 172.16.180.0/23
+Endpoint = 123.200.10.126:8443
+PersistentKeepalive = 25
+
+Save and Close The file.
+
+-----------------< >---------------------
+
+
+Step 3: Enable and start the WireGuard connection
+==================================================
+# systemctl enable --now wg-quick@wg0
+
+
+------------------< >---------------------
+
+Step 4: Verification
+=====================
+
+1. Ping the IP addresses of the server:
+=======================================
+
+# ping 
+
+2. Display the interface configuration of the wg0 device:
+=========================================================
+# wg show wg0
+
+interface: wg0
+  public key: QJktJ8nZhjtFIAQbImF6o2yhfl54V/gFsGOoKrQNyVw=
+  private key: (hidden)
+  listening port: 56505
+  fwmark: 0xca6c
+
+peer: qU5ULUtVYlFF5LT2yhy1bhlG4LQQKTUrxHTZli9bOQA=
+  preshared key: (hidden)
+  endpoint: 123.200.10.126:8443
+  allowed ips: 0.0.0.0/0, ::/0
+  latest handshake: 4 seconds ago
+  transfer: 16.81 MiB received, 744.82 KiB sent
+  persistent keepalive: every 25 seconds
+
+
+3. Display the IP configuration of the wg0 device:
+==================================================
+# ip address show wg0
+
+
+------------------< >---------------------
+
+Feel Free to Go through this link for more info:
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/configuring_and_managing_networking/assembly_setting-up-a-wireguard-vpn_configuring-and-managing-networking#proc_configuring-a-wireguard-client-by-using-the-wg-quick-service_assembly_setting-up-a-wireguard-vpn
